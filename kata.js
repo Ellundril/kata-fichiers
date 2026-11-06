@@ -52,20 +52,25 @@ function ecrireBilan(chemin, taches) {
   let listeTaches = [new Date().toLocaleDateString("fr-FR")];
   let nbTachesOk = 0;
   let icone = "";
-  taches.forEach((tache) => {
-    if (tache.faite) {
-      icone = "✅";
-      nbTachesOk++;
-    } else {
-      icone = "❌";
-    }
-    listeTaches.push(`${icone} ${tache.nom}`);
-  });
-  listeTaches.push("");
-  listeTaches.push(
-    `Tâches faites : ${Math.round((nbTachesOk / taches.length) * 100)} %`,
-  );
-  writeFileSync(chemin, listeTaches.join("\n"));
+  if (taches.length === 0) {
+    writeFileSync(chemin, "Aucune tâche aujourd'hui");
+  } else {
+    taches.forEach((tache) => {
+      if (tache.faite) {
+        icone = "✅";
+        nbTachesOk++;
+      } else {
+        icone = "❌";
+      }
+      listeTaches.push(`${icone} ${tache.nom}`);
+    });
+    listeTaches.push("");
+    listeTaches.push(
+      `Tâches faites : ${Math.round((nbTachesOk / taches.length) * 100)} %`,
+    );
+    writeFileSync(chemin, listeTaches.join("\n"));
+  }
 }
+
 const cheminAbsolu = join(homedir(), "Documents", "ada-tech", "bilan.txt");
 ecrireBilan(cheminAbsolu, taches);
