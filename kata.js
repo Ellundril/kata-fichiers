@@ -15,3 +15,9 @@ content = readFileSync("./bonjour.txt", "utf-8");
 console.log(content);
 
 /* Le fichier bonjour.txt contient maintenant "Au revoir Ada", l'ancien texte "bonjour Ada !"" a disparu. La fonction writeFileSync écrase le contenu précédent */
+
+//EXERCICE 3
+console.log("---------------EXERCICE 3---------------");
+const courses = ["pain", "lait", "pommes"];
+const liste = courses.join("\n");
+writeFileSync("./courses.txt", liste);
