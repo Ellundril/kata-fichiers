@@ -1,1 +1,1 @@
-console.log("kata activé");
+import { writeFileSync, readFileSync } from "fs";
