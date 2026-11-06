@@ -80,7 +80,13 @@ ecrireBilan(cheminAbsolu, taches);
 /* 
 1. Si je relance le script plusieurs fois, j'ai à chaque fois les messages qui s'inscrivent à nouveau dans la console et les fichiers .txt sont réécrits (écrasés et réécrit par writeFileSync).
 J'obtiens un seul fichier courses.txt qui contient toujours la même liste (pain, lait, pomme) puisqu'une fois le fichier créé writeFileSync réécrit dans le même fichier en écrasant le contenu précédent.
-2. 
+
+2. Node renvoie cette erreur : 
+TypeError [ERR_INVALID_ARG_TYPE]: The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of Object
+Il me dit que l'argument doit être de type chaine de caractère ou une instance de Buffer, TypedArray ou DataView et qu'il a reçu un argument de type objet. On n'a pas entré le bon type d'argument.
+Cela m'apprend qu'un fichier ne peut pas contenir des éléments de type objet. 
+
+3. Le chemin relatif créera le fichier dans le dossier courant dans lequel je me trouve quand je lance le script. Si je lance la commande depuis le dossier bloc1 par exemple (node projets/kata-fichiers/kata.js) les fichiers bilan.txt, bonjour.txt, courses.txt et profil.json seront créés dans le dossier bloc 1.
  */
 
-writeFileSync("test.txt", { a: 1 });
+/* writeFileSync("test.txt", { a: 1 }); */
