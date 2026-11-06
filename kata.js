@@ -74,3 +74,13 @@ function ecrireBilan(chemin, taches) {
 
 const cheminAbsolu = join(homedir(), "Documents", "ada-tech", "bilan.txt");
 ecrireBilan(cheminAbsolu, taches);
+
+//Questions de recul
+
+/* 
+1. Si je relance le script plusieurs fois, j'ai à chaque fois les messages qui s'inscrivent à nouveau dans la console et les fichiers .txt sont réécrits (écrasés et réécrit par writeFileSync).
+J'obtiens un seul fichier courses.txt qui contient toujours la même liste (pain, lait, pomme) puisqu'une fois le fichier créé writeFileSync réécrit dans le même fichier en écrasant le contenu précédent.
+2. 
+ */
+
+writeFileSync("test.txt", { a: 1 });
