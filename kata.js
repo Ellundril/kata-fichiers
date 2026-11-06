@@ -47,7 +47,7 @@ const taches = [
 ];
 
 function ecrireBilan(chemin, taches) {
-  let listeTaches = [];
+  let listeTaches = [new Date().toLocaleDateString("fr-FR")];
   let nbTachesOk = 0;
   let icone = "";
   taches.forEach((tache) => {
