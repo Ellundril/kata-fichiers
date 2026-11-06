@@ -53,7 +53,10 @@ function ecrireBilan(chemin, taches) {
   let nbTachesOk = 0;
   let icone = "";
   if (taches.length === 0) {
-    writeFileSync(chemin, "Aucune tâche aujourd'hui");
+    writeFileSync(chemin, "Aucune tâche aujourd'hui", {
+      encoding: "utf-8",
+      flag: "a+",
+    });
   } else {
     taches.forEach((tache) => {
       if (tache.faite) {
@@ -66,9 +69,12 @@ function ecrireBilan(chemin, taches) {
     });
     listeTaches.push("");
     listeTaches.push(
-      `Tâches faites : ${Math.round((nbTachesOk / taches.length) * 100)} %`,
+      `Tâches faites : ${Math.round((nbTachesOk / taches.length) * 100)} %\n `,
     );
-    writeFileSync(chemin, listeTaches.join("\n"));
+    writeFileSync(chemin, listeTaches.join("\n"), {
+      encoding: "utf-8",
+      flag: "a+",
+    });
   }
 }
 
@@ -89,4 +95,4 @@ Cela m'apprend qu'un fichier ne peut pas contenir des éléments de type objet.
 3. Le chemin relatif créera le fichier dans le dossier courant dans lequel je me trouve quand je lance le script. Si je lance la commande depuis le dossier bloc1 par exemple (node projets/kata-fichiers/kata.js) les fichiers bilan.txt, bonjour.txt, courses.txt et profil.json seront créés dans le dossier bloc 1.
  */
 
-/* writeFileSync("test.txt", { a: 1 }); */
+/* J'ai utilisé un flag pour writeFileSync dans l'exercice 5 pour que bilan puisse contenir les tâches effectuées des jours précédents et voir l'évolution. Le fait de mettre le flag "a+" permet d'éviter que writeFileSync écrase le fichier à l'écriture. Il écrit à la suite de ce qui est déjà présent dans le fichier. */
