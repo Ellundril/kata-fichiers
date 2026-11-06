@@ -37,3 +37,33 @@ const objet = JSON.parse(readFileSync("./profil.json"));
 console.log(
   `Nom : ${objet.prenom}\nNombre de langages: ${objet.langages.length}`,
 );
+
+//EXERCICE 5
+console.log("---------------EXERCICE 5---------------");
+const taches = [
+  { nom: "lire le cours", faite: true },
+  { nom: "finir le TP", faite: true },
+  { nom: "relire mes notes", faite: false },
+];
+
+function ecrireBilan(chemin, taches) {
+  let listeTaches = [];
+  let nbTachesOk = 0;
+  let icone = "";
+  taches.forEach((tache) => {
+    if (tache.faite) {
+      icone = "✅";
+      nbTachesOk++;
+    } else {
+      icone = "❌";
+    }
+    listeTaches.push(`${icone} ${tache.nom}`);
+  });
+  listeTaches.push("");
+  listeTaches.push(
+    `Tâches faites : ${Math.round((nbTachesOk / taches.length) * 100)} %`,
+  );
+  writeFileSync(chemin, listeTaches.join("\n"));
+}
+
+ecrireBilan("./bilan.txt", taches);
