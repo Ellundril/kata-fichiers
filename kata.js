@@ -1,4 +1,6 @@
 import { writeFileSync, readFileSync } from "fs";
+import { join } from "path";
+import { homedir } from "os";
 
 //EXERCICE 1
 console.log("---------------EXERCICE 1---------------");
@@ -65,5 +67,5 @@ function ecrireBilan(chemin, taches) {
   );
   writeFileSync(chemin, listeTaches.join("\n"));
 }
-
-ecrireBilan("./bilan.txt", taches);
+const cheminAbsolu = join(homedir(), "Documents", "ada-tech", "bilan.txt");
+ecrireBilan(cheminAbsolu, taches);
